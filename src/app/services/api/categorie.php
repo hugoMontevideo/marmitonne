@@ -23,7 +23,7 @@ if($_GET['action'] == 'readAll')
 
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
 
-    echo json_encode($data);
+    echo json_encode($data); // echo envoie les data en json
 }
 
 if($_GET['action'] == 'delete' )
@@ -32,6 +32,10 @@ if($_GET['action'] == 'delete' )
     
     $result = $pdo->prepare($sql);
     $result->execute( [':id'=>$_GET['id']] );
+
+}
+if($_GET['action'] == 'update')
+{
 
 }
 

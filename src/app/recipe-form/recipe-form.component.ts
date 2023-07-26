@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { RecetteService } from '../services/recette.service';
 import { Router } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -12,8 +11,8 @@ import { HttpService } from '../services/api/http.service';
   templateUrl: './recipe-form.component.html',
   styleUrls: ['./recipe-form.component.scss']
 })
-export class RecipeFormComponent implements OnInit {
 
+export class RecipeFormComponent implements OnInit {
   recette= {
     id:0,
     titre : '',
@@ -31,28 +30,26 @@ export class RecipeFormComponent implements OnInit {
   test :any;
   // id: string | null = '0'; // si id = 0 on est en ajout
   id:any;
-  faCoffee = faCoffee;
 
   constructor(
-      private http:HttpService,
-      private router: Router
-    ){  }
+              private http:HttpService,
+              private router: Router
+            ){  }
 
   ngOnInit(){
-    // let test2 = this.route.snapshot.paramMap.get('test');
-    // this.id = this.route.snapshot.paramMap.get('id');
-
     this.http.getData("categorie")
       .subscribe({
-      next: (data)=>this.categories = data,
-      error: (err:Error)=> console.log(err),
-      complete:()=>console.log("success")
+        next: (data)=>this.categories = data, // echo nous envoie les data
+        error: (err:Error)=> console.log(err),
+        complete:()=>console.log("success")
+      });
+
       
-    });
-
     if(this.id != null){
+      console.log('hello');
 
-      this.http.getData("recette", this.id).subscribe({
+      this.http.getData("recette", this.id)
+      .subscribe({
         next: (data)=>this.recette = data,
         error: (err:Error)=> console.log(err),
         complete:()=> console.log("success")
@@ -65,8 +62,7 @@ export class RecipeFormComponent implements OnInit {
   
 
   formulaire( form: NgForm ){
-    console.log(form.value);
-    
+    // console.log(form.value);
     this.http.postData('recette', form.value )
     .subscribe({
       next: (data)=>console.log('ok'),

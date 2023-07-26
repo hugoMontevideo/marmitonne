@@ -12,24 +12,20 @@ export class CategoryComponent implements OnInit {
 
   constructor( 
         private http: HttpService
-      ){
-
-  };// injection d'un CategoryService
+      ){ };// injection d'un HttpService
 
   ngOnInit(): void{
  
     this.getData();
-   
   }
 
   delete(id:any){
     // console.log(id);
-    
-    this.http.deleteData('categorie', id).subscribe({
+    this.http.deleteData('categorie', id)
+    .subscribe({
       error: (err: Error )=>console.error('Observer got an error: '+ err ),
       complete: ()=> this.getData()
     });
-  
   }
 
   getData(){

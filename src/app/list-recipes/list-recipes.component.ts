@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecetteService } from '../services/recette.service';
+import { HttpService } from '../services/api/http.service';
 
 @Component({
   selector: 'app-list-recipes',
@@ -7,21 +7,33 @@ import { RecetteService } from '../services/recette.service';
   styleUrls: ['./list-recipes.component.scss']
 })
 
-export class ListRecipesComponent {
+export class ListRecipesComponent implements OnInit {
   // recipes: any;
   recipes: Array<any> = [];
 
-  constructor(private rs: RecetteService){ }; // injection d'un RecetteService
+  constructor(
+      private http: HttpService
+    ){ }; // injection d'un RecetteService
 
-  ngOnInit(){
-    this.recipes = this.rs.readRecipes();
+  ngOnInit():void {
+    this.getData();
+    // this.recipes = this.rs.readRecipes();
   }
-
 
   delete(id:any){
-    this.rs.deleteRecipe(id);
-
-    this.ngOnInit();
+    this.http.deleteData('recette', id)
+    .subscribe({
+      error: (err: Error )=>console.error('Observer got an error: '+ err ),
+      complete: ()=> this.getData()
+    });
   }
 
+  getData(){
+    this.http.getData("recette")
+    .subscribe({
+      next: (data)=>this.recipes = data,
+      error: (err:Error)=> console.log(err),
+      complete:()=>console.log("success")
+    });
+  }
 }

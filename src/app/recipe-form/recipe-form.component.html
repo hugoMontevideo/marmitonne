@@ -7,13 +7,12 @@
           <input type="hidden" name="id" [(ngModel)]="recette.id">
           <div class="form-group">
             <label for="titre">Titre</label>
-            <input [(ngModel)]= "recette.titre" type="text" class="form-control" name="titre" id="titre" aria-describedby="titre" placeholder="Titre de la recette">
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            <input [(ngModel)]="recette.titre" type="text" class="form-control" name="titre" id="titre" aria-describedby="titre" placeholder="Titre de la recette">
           </div>
           
           <div class="form-group">
             <label for="descriptif">Descriptif</label>
-            <input [(ngModel)]= "recette.descriptif" type="text" class="form-control" name="description" id="descriptif" aria-describedby="descriptif" placeholder="Description de la recette">
+            <input [(ngModel)]="recette.descriptif" name="description" type="text" class="form-control" id="descriptif" aria-describedby="descriptif" placeholder="Description de la recette">
             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
           <!-- <div class="form-group">
@@ -23,7 +22,7 @@
           <!-- </div> -->
           <div class="form-group">
             <label for="difficulte">Difficulté </label>
-            <select  [(ngModel)]= "recette.difficulte" class="form-control" name="difficulte" id="difficulte">
+            <select  [(ngModel)]="recette.difficulte" class="form-control" name="difficulte" id="difficulte">
               <option value="facile">facile</option>
               <option value="moyen">moyen</option>
               <option value="difficile">difficile</option>
@@ -32,12 +31,10 @@
           <div class="form-group">
             <label for="tempsPrep">Temps de préparation (en min )</label>
             <input type="number" [(ngModel)]= "recette.tempsprep" class="form-control" name="tempsprep" id="tempsPrep" aria-describedby="tempsprep" placeholder="tempsPrep">
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
           <div class="form-group">
             <label for="tempsCuisson">Temps de cuisson</label>
             <input [(ngModel)]= "recette.tempscuisson" type="text" class="form-control" name="tempscuisson" id="tempsCuisson" aria-describedby="tempsCuisson" placeholder="tempsCuisson">
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
           <div class="form-group">
             <label for="cout">Cout</label>
@@ -51,7 +48,6 @@
           <div class="form-group">
             <label for="photo">Url de l'image</label>
             <input [(ngModel)]= "recette.photo" type="text" class="form-control" name="photo" id="photo" aria-describedby="photo" placeholder="photo">
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
           <div class="preview" mt-3>
             <img *ngIf="recette.photo != null" src="{{recette.photo}}" alt="">

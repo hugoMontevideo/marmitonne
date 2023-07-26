@@ -13,7 +13,6 @@ if($_GET['action'] == 'create' )
     $result->execute($data);
 
     echo json_encode($data); // pour la reponse on encode en json
-
 }
 
 if($_GET['action'] == 'readAll')

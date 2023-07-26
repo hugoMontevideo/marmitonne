@@ -6,12 +6,12 @@
         <img [src]="elmt.photo" alt="">
     
         <div class="card-body">
-            <a  class="card-link btn btn-success">Voir la recette</a>
-            <a  class="card-link btn btn-success"
+            <a  class="card-link btn btn-success mx-auto">Voir la recette</a>
+            <a  class="card-link btn btn-info"
                 [routerLink]="['/formRecipe', elmt.id]">Modifier</a>
             <a  
                 (click)=" delete(elmt.id) "
-                class="card-link btn btn-success">Supprimer</a>
+                class="card-link btn btn-warning">Supprimer</a>
           </div>
     
     </div>
