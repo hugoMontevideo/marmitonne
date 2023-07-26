@@ -1,0 +1,18 @@
+<button (mouseenter)="onMouseOverBtn1()" (mouseout)="onMouseOverBtn1()">{{ afficheBtn1 ?'Cacher cout'  : 'Cout/difficulté' }}</button>
+
+<button (mouseenter)="onMouseOverBtn2()" (mouseout)="onMouseOverBtn2()">{{ afficheBtn2 ? 'cacher temps'  : 'cuisson/prepa' }}</button>
+
+<div *ngIf="afficheBtn1"> 
+
+    <p >Cout : {{ cout }}</p>
+    <p>Difficulté : {{ difficulte}}</p>
+
+</div> 
+
+<div *ngIf="afficheBtn2"> 
+
+    <p >Cuisson : {{ tempsCuisson }} mn</p>
+    <p>Préparation : {{ tempsPrep}} mn</p>
+
+</div> 
+

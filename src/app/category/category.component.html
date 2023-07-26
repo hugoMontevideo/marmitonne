@@ -1,0 +1,25 @@
+<div class="container d-flex flex-wrap justify-content-lg-between mt-5">
+    
+    <div class="card mb-3 p-2 border-0 shadow" 
+        *ngFor="let elmt of categories">
+    
+        <h1 class="text-center">{{ elmt.titre }}</h1>
+        <img [src]="elmt.photo" alt="">
+    
+        <div class="card-body">
+            <a  class="card-link btn btn-info"
+                [routerLink]="['/formCategory', elmt.id]">
+                Modifier
+            </a>
+            <a  
+                (click)="delete(elmt.id)"
+                class="card-link btn btn-warning">
+                Supprimer
+            </a>
+          </div>
+    
+    </div>
+
+</div>
+
+

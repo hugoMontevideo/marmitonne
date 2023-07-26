@@ -1,0 +1,19 @@
+<div class="container d-flex justify-content-lg-between">
+    
+    <div class="card" *ngFor="let elmt of recipes">
+    
+        <h1>{{ elmt.titre }}</h1>
+        <img [src]="elmt.photo" alt="">
+    
+        <div class="card-body">
+            <a  class="card-link btn btn-success">Voir la recette</a>
+            <a  class="card-link btn btn-success"
+                [routerLink]="['/formRecipe', elmt.id]">Modifier</a>
+            <a  
+                (click)=" delete(elmt.id) "
+                class="card-link btn btn-success">Supprimer</a>
+          </div>
+    
+    </div>
+
+</div>
