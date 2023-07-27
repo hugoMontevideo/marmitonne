@@ -6,6 +6,8 @@ import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { ListRecipesComponent } from './list-recipes/list-recipes.component';
 import { CategoryComponent } from './category/category.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
+import { IngredientComponent } from './ingredient/ingredient.component';
+import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 
 const routes: Routes = [
   { path : "", component: HomeComponent },
@@ -15,7 +17,11 @@ const routes: Routes = [
   { path: "listRecipe", component: ListRecipesComponent },
   { path: "listCategory", component: CategoryComponent},
   { path: "formCategory", component: CategoryFormComponent},
-  { path: "formCategory/:id", component: CategoryFormComponent }
+  { path: "formCategory/:id", component: CategoryFormComponent },
+  { path: "listIngredient", component: IngredientComponent},
+  { path: "formIngredient", component: IngredientFormComponent},
+  // { path: "formIngredient/:id", component: IngredientFormComponent}, // modification d'un ingredient
+  { path: "formIngredient/:id", component: IngredientFormComponent} // id_recette
 
 ]
 

@@ -20,20 +20,21 @@ export class ListRecipesComponent implements OnInit {
     // this.recipes = this.rs.readRecipes();
   }
 
-  delete(id:any){
-    this.http.deleteData('recette', id)
-    .subscribe({
-      error: (err: Error )=>console.error('Observer got an error: '+ err ),
-      complete: ()=> this.getData()
-    });
-  }
-
   getData(){
     this.http.getData("recette")
     .subscribe({
+      // next: (data)=>console.log(data),
       next: (data)=>this.recipes = data,
       error: (err:Error)=> console.log(err),
       complete:()=>console.log("success")
+    });
+  }
+
+  delete(id:any){
+    this.http.deleteData("recette", id)
+    .subscribe({
+      error: (err: Error )=>console.error('Observer got an error: '+ err ),
+      complete: ()=> this.getData()
     });
   }
 }

@@ -12,6 +12,8 @@ import { ListRecipesComponent } from './list-recipes/list-recipes.component';
 import { CategoryComponent } from './category/category.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { HttpClientModule } from '@angular/common/http';
+import { IngredientComponent } from './ingredient/ingredient.component';
+import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
     RecipeFormComponent,
     ListRecipesComponent,
     CategoryComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    IngredientComponent,
+    IngredientFormComponent
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,8 @@ if($_GET['action'] == 'create' )
 
 if($_GET['action'] == 'readAll')
 {
-    $sql = "SELECT r.*, c.titre from categorie c INNER JOIN recette r ON r.id_categorie=c.id";
+    $sql = "SELECT r.*, c.titre as categorie FROM categorie c 
+            INNER JOIN recette r ON r.id_categorie=c.id";
 
     $result = $pdo->prepare($sql);
     $result->execute();
@@ -29,9 +30,9 @@ if($_GET['action'] == 'readAll')
 
 if($_GET['action'] == 'readOne')
 {
-    $sql = "SELECT r.*, c.titre from categorie c 
+    $sql = "SELECT r.*, c.titre as categorie FROM categorie c 
             INNER JOIN recette r ON r.id_categorie=c.id
-            WHERE id=:id";
+            WHERE r.id = :id";
 
     $result = $pdo->prepare($sql);
     $result->execute([':id'=>$_GET['id']]);

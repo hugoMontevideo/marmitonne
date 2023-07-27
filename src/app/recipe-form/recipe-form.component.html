@@ -11,8 +11,8 @@
           </div>
           
           <div class="form-group">
-            <label for="descriptif">Descriptif</label>
-            <input [(ngModel)]="recette.descriptif" name="description" type="text" class="form-control" id="descriptif" aria-describedby="descriptif" placeholder="Description de la recette">
+            <label for="description">description</label>
+            <input [(ngModel)]="recette.description" name="description" type="text" class="form-control" id="description" aria-describedby="description" placeholder="Description de la recette">
             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
           <!-- <div class="form-group">
@@ -29,8 +29,8 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="tempsPrep">Temps de préparation (en min )</label>
-            <input type="number" [(ngModel)]= "recette.tempsprep" class="form-control" name="tempsprep" id="tempsPrep" aria-describedby="tempsprep" placeholder="tempsPrep">
+            <label for="tempsprep">Temps de préparation (en min )</label>
+            <input type="number" [(ngModel)]= "recette.tempsprep" class="form-control" name="tempsprep" id="tempsprep" aria-describedby="tempsprep" placeholder="tempsprep">
           </div>
           <div class="form-group">
             <label for="tempsCuisson">Temps de cuisson</label>
@@ -64,8 +64,6 @@
               </select>
             </div>
           </div>
-        
-
           <button type="submit" class="btn btn-primary mt-3" >Submit</button>
         </form>
       </div>

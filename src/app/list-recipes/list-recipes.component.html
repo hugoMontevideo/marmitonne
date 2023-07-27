@@ -10,8 +10,18 @@
             <a  class="card-link btn btn-info"
                 [routerLink]="['/formRecipe', elmt.id]">Modifier</a>
             <a  
-                (click)=" delete(elmt.id) "
-                class="card-link btn btn-warning">Supprimer</a>
+                (click)="delete(elmt.id)"
+                class="card-link btn btn-warning">
+                Supprimer
+            </a>
+            <a  class="card-link btn btn-info"
+                [routerLink]="['/formIngredient',elmt.id]">
+                Ajouter des ingrédients
+            </a>
+            <a class="card-link btn btn-success"
+                [routerLink]="['/formIngredient',elmt.id]">
+                Liste des ingrédients
+            </a>
           </div>
     
     </div>

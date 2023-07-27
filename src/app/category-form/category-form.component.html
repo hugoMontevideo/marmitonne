@@ -3,20 +3,20 @@
       <div class="col-10 col-lg-4"> 
   
         <form #form1 ="ngForm" (submit)="formulaire1(form1, id)">
-            <legend>Nouvelle catégorie</legend>
-            <div class="form-group">
-              <label for="titre">Titre</label>
-              <input [(ngModel)]= "category.titre" 
-                type="text" class="form-control" 
-                name="titre" 
-                id="titre" 
-                aria-describedby="titre" 
-                placeholder="Titre de la catégorie">
-              <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-            </div>
-  
-            <button type="submit" class="btn btn-primary mt-3" >Valider</button>
-          </form>
-        </div>
+          <legend>Nouvelle catégorie</legend>
+          <div class="form-group">
+            <label for="titre">Titre</label>
+            <input [(ngModel)]= "category.titre" 
+              type="text" class="form-control" 
+              name="titre" 
+              id="titre" 
+              aria-describedby="titre" 
+              placeholder="Titre de la catégorie">
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-3" >Valider</button>
+        </form>
       </div>
-  </div>
+    </div>
+</div>

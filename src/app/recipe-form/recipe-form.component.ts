@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { HttpService } from '../services/api/http.service';
+
 
 @Component({
   selector: 'app-recipe-form',
@@ -13,11 +14,12 @@ import { HttpService } from '../services/api/http.service';
 })
 
 export class RecipeFormComponent implements OnInit {
+  table: string = "recette";
   recette= {
     id:0,
     titre : '',
     id_categorie: '',
-    descriptif: '',
+    description: '',
     ingredient1: [],
     difficulte: '',
     tempsprep: '',
@@ -33,7 +35,8 @@ export class RecipeFormComponent implements OnInit {
 
   constructor(
               private http:HttpService,
-              private router: Router
+              private router: Router,
+              private route : ActivatedRoute
             ){  }
 
   ngOnInit(){
@@ -44,22 +47,18 @@ export class RecipeFormComponent implements OnInit {
         complete:()=>console.log("success")
       });
 
-      
+    this.id= this.route.snapshot.paramMap.get('id');
+ 
     if(this.id != null){
-      console.log('hello');
-
-      this.http.getData("recette", this.id)
+      this.http.getData( this.table, this.id )
       .subscribe({
         next: (data)=>this.recette = data,
         error: (err:Error)=> console.log(err),
         complete:()=> console.log("success")
-
       })
-
     }
-  }
 
-  
+  }
 
   formulaire( form: NgForm ){
     // console.log(form.value);
