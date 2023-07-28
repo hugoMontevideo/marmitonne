@@ -1,11 +1,14 @@
 <div class="row">
+  <h1 class="mt-3 text-center fs-2">
+    {{ingredients != undefined ?ingredients[0].recette : 'Ma recette'}}
+  </h1>
 
-  <div class="container col-12 col-lg-6">
-      <div class="row justify-content-center mt-5">
+  <div class="container col-12 col-lg-4 p-3">
+      <div class="row justify-content-center mt-5 shadow pb-3 pt-3">
         <div class="col-10 col-lg-6"> 
     
           <form #form2 ="ngForm" (submit)="formulaire2(form2, ingredient.id)">
-            <legend>Nouvel ingrédient</legend>
+            <legend class="fs-3">Nouvel ingrédient</legend>
             <input type="hidden" name="id" [(ngModel)]="ingredient.id">
             <div class="form-group">
               <label for="titre">Titre</label>
@@ -43,8 +46,8 @@
       </div>
   </div>
 
-  <div class="container col-11 col-lg-6  mt-5">
-    <h2>Ingredients :</h2>
+  <div class="container col-11 col-lg-6  mt-5 shadow pb-4">
+    <h2 class="fs-3">Ingrédients :</h2>
       
     <div class="card mt-3 p-2 border-0 shadow" 
         *ngFor="let elmt of ingredients">
@@ -69,5 +72,15 @@
       
     </div>
   </div>
-
+  <a  
+    [routerLink]="['../../listRecipe']"
+    class="card-link btn btn-primary w-25 mt-5 mx-auto">
+    Liste de recettes
+  </a>
+  <a  
+    [routerLink]="['../../formRecipe', ingredient.id_recette]"
+    class="card-link btn btn-info w-25 mt-5 mx-auto">
+    Retour à la recette
+  </a>
+ 
 </div>

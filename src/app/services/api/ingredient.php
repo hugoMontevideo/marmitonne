@@ -15,9 +15,11 @@ if($_GET['action'] == 'create' )
     echo json_encode($data); // pour la reponse on encode en json
 }
 
+// ingredients de la recette
 if($_GET['action'] == 'readIngredients')
 {
-    $sql = "SELECT * FROM ingredient
+    $sql = "SELECT i.*, r.titre as recette FROM ingredient i
+            INNER JOIN recette r ON r.id = i.id_recette
             WHERE id_recette = :id_recette";
 
     $result = $pdo->prepare($sql);
@@ -27,6 +29,9 @@ if($_GET['action'] == 'readIngredients')
 
     echo json_encode($data); // echo envoie les data en json
 }
+
+
+
 
 if($_GET['action'] == 'readAll')
 {

@@ -24,12 +24,17 @@ export class IngredientFormComponent implements OnInit{
               }
 
   constructor( 
-              private router: Router,
+              // private router: Router,
               private route: ActivatedRoute,
               private http: HttpService
             ){}
 
   ngOnInit(){
+    // if( this.ingredients == undefined){
+    //   // this.etapes = [];
+    //   this.ingredients=[{recette: 'Ma recette'}] ;
+    // }
+
       this.id_recette = this.route.snapshot.paramMap.get('id');
 
       if(this.id_recette != null){ 

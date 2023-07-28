@@ -11,8 +11,7 @@ export class HttpService {
   constructor( private http: HttpClient ) {  }
 
   getData( table:string, id:any=null ): Observable<any> {
-    console.log('table : ', table, id);
-    
+    // console.log('table : ', table, id);
     if(id != null){
       return this.http.get('http://localhost/angular/marmitonne/src/app/services/api/' + table + '.php?action=readOne&id='+id);
 
@@ -32,16 +31,33 @@ export class HttpService {
 
   }
   
-/**
- * On récupere les ingredients d'une recette par id_recette
- * @param table 
- * @param id 
- * @returns 
- */
+  /**
+   * On récupere les ingredients d'une recette par id_recette
+   * @param table ingredient
+   * @param id id_recette
+   * @returns 
+   */
   getIngredientByIdRecipe(table:string, id:any=null): Observable<any> {
 
     if(id != null){
       return this.http.get('http://localhost/angular/marmitonne/src/app/services/api/' + table + '.php?action=readIngredients&id=' + id);
+
+    }else{
+      return this.http.get('http://localhost/angular/marmitonne/src/app/services/api/' + table + '.php?action=readAll');
+    }
+
+  }
+
+  /**
+   * On récupere les ingredients d'une recette par id_recette
+   * @param table etape
+   * @param id id_recette
+   * @returns 
+   */
+  getEtapeByIdRecipe(table:string, id:any=null): Observable<any> {
+
+    if(id != null){
+      return this.http.get('http://localhost/angular/marmitonne/src/app/services/api/' + table + '.php?action=readEtapes&id=' + id);
 
     }else{
       return this.http.get('http://localhost/angular/marmitonne/src/app/services/api/' + table + '.php?action=readAll');

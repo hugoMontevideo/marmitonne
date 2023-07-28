@@ -1,0 +1,70 @@
+<div class="row">
+    <h1 class="mt-3 text-center fs-2">
+        {{ etapes != undefined ?etapes[0].recette : 'Ma recette' }}
+    </h1>
+    <div class="container col-12 col-lg-4 p-3">
+        <div class="row justify-content-center p-5 shadow mt-5">
+          <div class="col-10 col-lg-6"> 
+      
+            <form #form3 ="ngForm" (submit)="formulaire3(form3, etape.id)">
+              <legend class="fs-3">Nouvelle étape</legend>
+              <input type="hidden" name="id" [(ngModel)]="etape.id">
+              <div class="form-group">
+                <label for="place">Etape numéro : </label>
+                <input [(ngModel)]="etape.place" 
+                  type="number" class="form-control" 
+                  name="place" 
+                  id="place" 
+                  aria-describedby="place" required>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <input [(ngModel)]="etape.description" 
+                  type="text" class="form-control" 
+                  name="description" 
+                  id="description" 
+                  aria-describedby="description" 
+                  placeholder="Description" required>
+              </div>
+              
+              <input type="hidden" name="id_recette" [(ngModel)]="etape.id_recette">
+              <button type="submit" class="btn btn-primary mt-3">Valider</button>
+            </form>
+          </div>
+        </div>
+    </div>
+  
+    <div class="container col-11 col-lg-6 shadow mt-5 pb-4">
+      <h2 class="fs-3">Etapes :</h2>
+        
+      <div class="card mt-3 p-2 border-0 shadow" 
+            *ngFor="let elmt of etapes"> 
+            <ul class=" w-100">
+                <li class="d-flex align-items-end justify-content-between w-100">
+                    <span class="fs-5 fw-bold">{{ elmt.place}} - </span> 
+                    <span class=>{{ elmt.description }}</span>
+                    <div class="">
+                        <a  
+                            (click)="delete(elmt.id)"
+                            class="card-link btn btn-warning">
+                            Supprimer
+                        </a>
+                    </div>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+    <a  
+      [routerLink]="['../../listRecipe']"
+      class="card-link btn btn-primary w-25 mt-5 mx-auto">
+      Liste de recettes
+    </a>
+    <a  
+      [routerLink]="['../../formRecipe', etape.id_recette]"
+      class="card-link btn btn-info w-25 mt-5 mx-auto">
+      Retour à la recette
+    </a>
+   
+  </div>
+

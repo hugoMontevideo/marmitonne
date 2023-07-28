@@ -8,20 +8,21 @@
         <div class="card-body">
             <a  class="card-link btn btn-success mx-auto">Voir la recette</a>
             <a  class="card-link btn btn-info"
+                [routerLink]="['/formIngredient',elmt.id]">
+                Ingrédients
+            </a>
+            <a class="card-link btn btn-warning"
+                [routerLink]="['/formEtape',elmt.id]">
+                Etapes
+            </a>
+            <a  class="card-link btn btn-info"
                 [routerLink]="['/formRecipe', elmt.id]">Modifier</a>
             <a  
                 (click)="delete(elmt.id)"
-                class="card-link btn btn-warning">
+                class="card-link btn btn-success">
                 Supprimer
             </a>
-            <a  class="card-link btn btn-info"
-                [routerLink]="['/formIngredient',elmt.id]">
-                Ajouter des ingrédients
-            </a>
-            <a class="card-link btn btn-success"
-                [routerLink]="['/formIngredient',elmt.id]">
-                Liste des ingrédients
-            </a>
+            
           </div>
     
     </div>
