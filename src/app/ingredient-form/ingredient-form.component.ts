@@ -52,12 +52,13 @@ export class IngredientFormComponent implements OnInit{
             // complete: ()=>console.log('Observer got a complete notification')
             complete: () => this.getIngredientOnRecipe()
            });
-    form.reset();
+    // form.reset();
     // this.router.navigate(['formIngredient', this.id_recette]); // equivalent à header: location
   }
 
   getIngredientOnRecipe(){
-    this.http.getIngredientByIdRecipe(this.table, this.id_recette).subscribe({
+    this.http.getIngredientByIdRecipe(this.table, this.id_recette)
+    .subscribe({
       next: (data:string)=> this.ingredients = (data),
       error: (err: Error )=>console.error('Observer got an error: '+ err ),
       complete: ()=>console.log('Observer got a complete notification')

@@ -64,6 +64,14 @@ export class HttpService {
     }
 
   }
-
+  /**
+ * On récupère le tableau des étapes dans l'ordre de la recette 
+ * @param table = 'ordre_etape
+ * @param id 
+ * @returns 
+ */
+  getOrdreEtapeByIdRecipe(table:string, id:any): Observable<any> {
+    return this.http.get('http://localhost/angular/marmitonne/src/app/services/api/' + table + '.php?action=readOrdre&id='+ id);
+  }
 
 }

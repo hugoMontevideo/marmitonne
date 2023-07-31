@@ -64,7 +64,7 @@ export class RecipeFormComponent implements OnInit {
     // console.log(form.value);
     this.http.postData('recette', form.value )
     .subscribe({
-      next: (data)=>console.log('ok'),
+      next: (data)=>console.log(data),
       error: (err:Error)=> console.log(err),
       complete:()=> console.log("success")
     } )

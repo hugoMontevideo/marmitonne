@@ -1,9 +1,9 @@
 <?php
 require_once 'init.php';
 
-if($_GET['action'] == 'create' )
-{
-    // var_dump('hello');
+// lorsqu'on crée une recette on doit créer
+// un enregistrement dans la table ordre_etape
+if($_GET['action'] == 'create' ) {
     $data = json_decode(file_get_contents('php://input'), true); // recuperation names
 
     $sql = "REPLACE INTO recette 
@@ -11,8 +11,18 @@ if($_GET['action'] == 'create' )
             VALUES (:id, :titre,:description,:cout, :tempsprep, :tempscuisson,:difficulte,:photo,:id_categorie)";
     $result = $pdo->prepare($sql);
     $result->execute($data);
+    $lastId = $pdo->lastInsertId(); // dernier id_recette
 
-    echo json_encode($data); // pour la reponse on encode en json
+    // créer un enregistrement dans ordre_etape 
+    $sql_ordre_etape = "INSERT INTO ordre_etape
+                                (ordre, id_recette)
+                        VALUES (:ordre, :id_recette)";
+    $result = $pdo->prepare($sql_ordre_etape);
+    $ok = $result->execute([':ordre'=> '',
+                      ':id_recette'=>$lastId
+                    ]);
+
+    echo json_encode($ok); // pour la reponse on encode en json
 }
 
 if($_GET['action'] == 'readAll')

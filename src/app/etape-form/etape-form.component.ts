@@ -20,6 +20,7 @@ export class EtapeFormComponent {
             }] ;
 
   tempOrder:any =[]; // tableau place des etapes by id
+  orderToString!: string;
 
   id_recette: string | null = '0';
   etape = {  // objet vide
@@ -35,7 +36,6 @@ export class EtapeFormComponent {
             ){}
 
   ngOnInit(){
- 
     this.id_recette = this.route.snapshot.paramMap.get('id');
 
     if(this.id_recette != null){ 
@@ -48,21 +48,20 @@ export class EtapeFormComponent {
     this.http.getEtapeByIdRecipe(this.table, this.id_recette).subscribe({
       next: (data:any)=> this.etapes = (data),
       error: (err: Error )=>console.error('Observer got an error: '+ err ),
-      complete: ()=>this.fillOrder() // remplir tableau tempOrder
-      
+      complete: ()=>this.fillOrder(this.id_recette) // remplir tableau tempOrder
     });
   }
 
   formulaire3( form: NgForm , id:any ){
-    console.log(form);
+    console.log(form.value);
     
-    this.http.postData( this.table , form.value )
+    this.http.postData( this.table, form.value )
         .subscribe({
-            next: (data:string )=>console.log(data),
-            error: (err: Error )=>console.error('Observer got an error: '+ err ),
-            complete: () => this.getEtapeOnRecipe()
-           });
-    form.reset();
+          next: (data:string )=>console.log(data),
+          error: (err: Error )=>console.error('Observer got an error: '+ err ),
+          complete: () => this.getEtapeOnRecipe()
+        });
+    // form.reset();
     // this.router.navigate(['formIngredient', this.id_recette]); // equivalent à header: location
   }
 
@@ -74,8 +73,16 @@ export class EtapeFormComponent {
     });
   }
 
-  fillOrder(){
-    this.etapes.forEach(etape=>this.tempOrder.push(etape.id))
+  fillOrder(id:any){
+    this.http.getOrdreEtapeByIdRecipe('ordre_etape', id)
+    .subscribe({
+      // next: (data)=>{ if(data.order != null) {this.tempOrder = data.ordre.split(",")} },
+      // next: (data)=> this.tempOrder = data.split(','),
+      next: (data)=> console.log(data),
+      error: (err: Error )=>console.error('Observer got an error: '+ err ),
+      complete: ()=> this.orderToString = this.tempOrder.toString()
+    });
+    // this.etapes.forEach(etape=>this.tempOrder.push(etape.id));
     // console.log(this.tempOrder)
   }
 
