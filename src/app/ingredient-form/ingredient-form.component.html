@@ -49,12 +49,11 @@
   <div class="container col-11 col-lg-6  mt-5 shadow pb-4">
     <h2 class="fs-3">Ingrédients :</h2>
       
-    <div class="card mt-3 p-2 border-0 shadow" 
-        *ngFor="let elmt of ingredients">
+    <div class="card mt-3 p-2 border-0 shadow" >
     
         <!-- <h1 class="text-center">{{ elmt.titre }}</h1>
         <img [src]="elmt.photo" alt=""> -->
-        <ul class=" w-100">
+        <ul *ngFor="let elmt of ingredients" class=" w-100" >
             <li class="d-flex align-items-end justify-content-between w-100">
               <span class="fs-5 fw-bold">{{ elmt.titre }} </span> 
               <span class=> {{ elmt.quantite }} {{ elmt.unite }}</span>

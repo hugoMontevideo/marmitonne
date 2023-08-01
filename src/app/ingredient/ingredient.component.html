@@ -1,11 +1,34 @@
-<div class="container d-flex flex-wrap justify-content-lg-between mt-5">
+
+
+<div class="form-group border-2 w-75 mx-auto m-2 shadow p-2">
+    <div class="d-flex flex-column">
+        <label for="nom " class="form-label mb-1">ingrédient</label>
+        <input type="text" #nom name="nom" id="nom">
+    </div>
+    <div>
+        <label for="quantite " class="form-label ms-5">quantité</label>
+        <input type="number" #quantite name="quantite" id="quantite">   
+    </div>
+
+    <div>   
+        <label for="unite " class="form-label ms-5">unite</label>
+        <input type="text" #unite name="unite" id="unite">
+    </div>
+
+    <div class="btn btn-info m-5"
+        (click)="addIngredient(unite.value, quantite.value, nom.value)">
+        Ajouter ingredient
+    </div>
+</div>
+
+<!-- <div class="container d-flex flex-wrap justify-content-lg-between mt-5">
     
     <div class="card mb-3 p-2 border-0 shadow" 
         *ngFor="let elmt of ingredients">
     
-        <!-- <h1 class="text-center">{{ elmt.titre }}</h1>
+        <h1 class="text-center">{{ elmt.titre }}</h1>
         <img [src]="elmt.photo" alt=""> -->
-        <ul class=" w-100">
+        <!-- <ul class=" w-100">
             <li class="d-flex align-items-center display-4 w-100">{{ elmt.titre }} {{ elmt.quantite }} {{ elmt.unite }}
                 <div class="card-body">
                     <a  class="card-link btn btn-info"
@@ -23,5 +46,5 @@
         </ul>
     
        
-    </div>
-</div>
+    </div> -->
+<!-- </div> --> 

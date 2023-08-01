@@ -19,16 +19,11 @@ export class ButtonDetailComponent {
 
   affiche: boolean = false;
 
-  surClick()
-  {
-    this.affiche = !this.affiche;
-  }
-
-  onMouseOverBtn1(){
+  onMouseOverBtn1(): void {
   this.afficheBtn1 = !this.afficheBtn1;
   }
 
-  onMouseOverBtn2(){
+  onMouseOverBtn2():void {
   this.afficheBtn2 = !this.afficheBtn2;
   }
 

@@ -1,0 +1,55 @@
+<div>
+    <div class="card shadow " >
+        <h1 class="text-center">{{ recette.titre }}</h1>
+        <!-- <h1>{{ elmt.titre }}</h1>
+        <img [src]="elmt.photo" alt=""> -->
+    
+        <div class="card-body ">
+            <img [src]="recette.photo" >
+            <p class="text-center">{{recette.description}}</p>
+            <p class="text-center">{{ recette.difficulte }}</p>
+        </div>
+        <div class="card-body d-flex flex-column">
+            <h4> Pour 
+                {{nbPersonne < 2 ? nbPersonne+' personne ' : nbPersonne+' personnes '}} :
+            </h4>
+            <div class="calcul mx-auto">
+                <button (click)="nbPersonne=nbPersonne-1" class="m-2 btn btn-secondary">-</button>
+                <button (click)="nbPersonne=nbPersonne+1" class="m-2 btn btn-secondary">+</button>
+            </div>
+            <a  class="card-link btn btn-info"
+                [routerLink]="['/formIngredient',recette.id]">
+                Ingrédients
+            </a>
+            <a class="card-link btn btn-warning"
+                [routerLink]="['/formEtape',recette.id]">
+                Etapes
+            </a>
+            <a  class="card-link btn btn-info"
+            
+            >
+                Ajouter aux favoris
+            </a>
+            <a  class="card-link btn btn-warning"
+                [routerLink]="['/formRecipe', recette.id]">Modifier</a>
+            <a  
+                
+                class="card-link btn btn-success">
+                Supprimer
+            </a>
+
+        </div>
+        <div class="card-body">
+            <ul>
+                <li *ngFor="let ingredient of ingredients">
+                    {{ ingredient.quantite | quantity:nbPersonne}}  
+                    {{ingredient.unite}} 
+                    {{ ingredient.nom}}
+                  
+                </li>
+                <li>Cout : {{ 20 | quantity:nbPersonne | euro }}</li>
+            </ul>
+        </div>
+    
+    </div>
+</div>

@@ -60,10 +60,19 @@
                 name="id_categorie" 
                 >
                 <option *ngFor="let category of categories" value="{{ category.id }}"
-                      >{{ category.titre}}</option>
+                      >{{ category.titre }}</option>
               </select>
             </div>
           </div>
+          <!-- $event contien l'objet qu'on a emit dans emit () -->
+          <app-ingredient (ingrEvent)="addIngr($event)"></app-ingredient>
+            <ul class="ms-5">
+              <li *ngFor="let ingredient of ingredients">
+                {{ ingredient.quantite }}
+                {{ ingredient.unite }}
+                {{ ingredient.nom }}
+              </li>
+            </ul>         
           <button type="submit" class="btn btn-primary mt-3" >Submit</button>
         </form>
       </div>

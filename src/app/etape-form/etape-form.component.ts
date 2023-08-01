@@ -19,7 +19,7 @@ export class EtapeFormComponent {
               recette: 'Ma recette'
             }] ;
 
-  tempOrder:any =[]; // tableau place des etapes by id
+  tempOrder:any = []; // tableau place des etapes by id
   orderToString!: string;
 
   id_recette: string | null = '0';
@@ -76,9 +76,9 @@ export class EtapeFormComponent {
   fillOrder(id:any){
     this.http.getOrdreEtapeByIdRecipe('ordre_etape', id)
     .subscribe({
-      // next: (data)=>{ if(data.order != null) {this.tempOrder = data.ordre.split(",")} },
-      // next: (data)=> this.tempOrder = data.split(','),
-      next: (data)=> console.log(data),
+      next: (data)=>{ if( data.order != undefined ) {this.tempOrder = data.ordre.split(",")} },
+      // next: (data)=> this.tempOrder = data.order.split(','),
+      // next: (data)=> console.log(data),
       error: (err: Error )=>console.error('Observer got an error: '+ err ),
       complete: ()=> this.orderToString = this.tempOrder.toString()
     });

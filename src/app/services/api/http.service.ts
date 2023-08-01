@@ -47,6 +47,22 @@ export class HttpService {
     }
 
   }
+   /**
+   * On récupere les ingredients d'une recette par id_recette
+   * @param table ingredient
+   * @param id id_recette
+   * @returns 
+   */
+   getRecipeById(table:string, id:any=null): Observable<any> {
+
+    if(id != null){
+      return this.http.get('http://localhost/angular/marmitonne/src/app/services/api/' + table + '.php?action=readOneRecipe&id=' + id);
+
+    }else{
+      return this.http.get('http://localhost/angular/marmitonne/src/app/services/api/' + table + '.php?action=readAll');
+    }
+
+  }
 
   /**
    * On récupere les ingredients d'une recette par id_recette

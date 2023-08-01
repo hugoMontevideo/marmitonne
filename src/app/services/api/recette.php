@@ -25,6 +25,18 @@ if($_GET['action'] == 'create' ) {
     echo json_encode($ok); // pour la reponse on encode en json
 }
 
+if($_GET['action'] == 'readOneRecipe')
+{
+    $sql = "SELECT * FROM recette
+            WHERE id = :id";
+
+    $result = $pdo->prepare($sql);
+    $result->execute([':id'=>$_GET['id']]);
+    $data = $result->fetch(PDO::FETCH_ASSOC);
+    
+    echo json_encode($data);
+}
+
 if($_GET['action'] == 'readAll')
 {
     $sql = "SELECT r.*, c.titre as categorie FROM categorie c 

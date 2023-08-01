@@ -14,6 +14,8 @@ import { HttpService } from '../services/api/http.service';
 })
 
 export class RecipeFormComponent implements OnInit {
+  
+  ingredients: Array<any> = [];
   table: string = "recette";
   recette= {
     id:0,
@@ -67,10 +69,18 @@ export class RecipeFormComponent implements OnInit {
       next: (data)=>console.log(data),
       error: (err:Error)=> console.log(err),
       complete:()=> console.log("success")
-    } )
+    } );
 
     this.router.navigate(['listRecipe']);
   
+  }
+
+  addIngr(event:any){
+    this.ingredients.push({
+      quantite: event.quantite,
+      nom: event.nom,
+      unite: event.unite
+    })
   }
 
   

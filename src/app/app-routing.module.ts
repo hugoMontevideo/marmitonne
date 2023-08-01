@@ -9,6 +9,7 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 import { IngredientComponent } from './ingredient/ingredient.component';
 import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 import { EtapeFormComponent } from './etape-form/etape-form.component';
+import { OneRecipeComponent } from './one-recipe/one-recipe.component';
 
 const routes: Routes = [
   { path : "", component: HomeComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   // { path: "formIngredient/:id", component: IngredientFormComponent}, // modification d'un ingredient
   { path: "formIngredient/:id", component: IngredientFormComponent}, // id_recette
   { path: "formEtape/:id", component: EtapeFormComponent},// id_recette
+  { path: "oneRecipe/:id", component: OneRecipeComponent},// id
 
 ]
 

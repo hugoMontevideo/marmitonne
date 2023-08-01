@@ -15,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { IngredientComponent } from './ingredient/ingredient.component';
 import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 import { EtapeFormComponent } from './etape-form/etape-form.component';
+import { OneRecipeComponent } from './one-recipe/one-recipe.component';
+import { QuantityPipe } from './quantity.pipe';
+import { EuroPipe } from './euro.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { EtapeFormComponent } from './etape-form/etape-form.component';
     CategoryFormComponent,
     IngredientComponent,
     IngredientFormComponent,
-    EtapeFormComponent
+    EtapeFormComponent,
+    OneRecipeComponent,
+    QuantityPipe,
+    EuroPipe
   ],
   imports: [
     BrowserModule,

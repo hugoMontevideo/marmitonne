@@ -1,0 +1,14 @@
+.card{
+    width: 80%;
+    margin: 5rem auto ;
+    border: none;
+    &-body{
+       width: 100%; 
+       img{
+        width: 100%;
+       }
+       a{
+        margin: .2rem 0 .2rem;
+       }
+    }
+}
