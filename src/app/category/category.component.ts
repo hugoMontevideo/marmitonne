@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/api/http.service';
+import { Category } from '../model/category';
 
 @Component({
   selector: 'app-category',
@@ -9,8 +10,9 @@ import { HttpService } from '../services/api/http.service';
 
 export class CategoryComponent implements OnInit {
 
-  categories: any; 
   table: string = "categorie";
+  categories!: Category[]; 
+  newCategory = new Category;
 
   constructor( 
         private http: HttpService
@@ -18,12 +20,12 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void{
  
-    this.getData();
+    this.getCategories();
   }
 
-  getData(){
-    this.http.getData("categorie").subscribe({
-      next: (data:string)=> this.categories = (data),
+  getCategories(){
+    this.http.getData(this.table).subscribe({
+      next: (data:Category[])=> this.categories = (data),
       error: (err: Error )=>console.error('Observer got an error: '+ err ),
       complete: ()=>console.log('Observer got a complete notification')
     });
@@ -34,8 +36,24 @@ export class CategoryComponent implements OnInit {
     this.http.deleteData('categorie', id)
     .subscribe({
       error: (err: Error )=>console.error('Observer got an error: '+ err ),
-      complete: ()=> this.getData()
+      complete: ()=> this.getCategories()
     });
+  }
+
+  onSaveClick(){
+    this.http.postObject( this.table , this.newCategory )
+    .subscribe({
+        next: (response:Category )=>{
+                  this.categories.push(response);
+                  this.getCategories();
+              },
+        error: (err: Error )=>console.error('Observer got an error: '+ err ),
+        // complete: ()=>this.router.navigate(['listCategory'])
+        complete: ()=> {
+                  this.newCategory.id = 0;
+                  this.newCategory.titre = '';
+              }
+       });
   }
 
 }

@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { CategoryService } from '../services/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../services/api/http.service';
+import { Category } from '../model/category';
 
 @Component({
   selector: 'app-category-form',
@@ -15,9 +16,7 @@ export class CategoryFormComponent implements OnInit{
   table: string = 'categorie';
 
   id: string | null = '0';
-  category = {  // objet vide
-                titre : ''
-              }
+  category = new Category;
 
   constructor( 
     // private rc: CategoryService,

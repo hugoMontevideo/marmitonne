@@ -1,8 +1,8 @@
 <div class="container ">
   <div class="row justify-content-center mt-5">
-    <div class="col-10 col-lg-4"> 
+    <div class="col-10 col-lg-6"> 
 
-      <form #form="ngForm" (submit)="formulaire(form)">
+      <form #form="ngForm" (submit)="formulaire(form)" class="shadow p-3 w-100">
           <legend>Nouvelle recette</legend>
           <input type="hidden" name="id" [(ngModel)]="recette.id">
           <div class="form-group">
@@ -13,13 +13,7 @@
           <div class="form-group">
             <label for="description">description</label>
             <input [(ngModel)]="recette.description" name="description" type="text" class="form-control" id="description" aria-describedby="description" placeholder="Description de la recette">
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
-          <!-- <div class="form-group">
-            <label for="ingredient1">Ingredient 1</label>
-            <input [(ngModel)]= "recette.ingredient1" type="text" class="form-control" name="ingredient1" id="ingredient1" aria-describedby="ingredient1" placeholder="ingredient1">
-           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-          <!-- </div> -->
           <div class="form-group">
             <label for="difficulte">Difficulté </label>
             <select  [(ngModel)]="recette.difficulte" class="form-control" name="difficulte" id="difficulte">
@@ -64,8 +58,10 @@
               </select>
             </div>
           </div>
+          
           <!-- $event contien l'objet qu'on a emit dans emit () -->
           <app-ingredient (ingrEvent)="addIngr($event)"></app-ingredient>
+
             <ul class="ms-5">
               <li *ngFor="let ingredient of ingredients">
                 {{ ingredient.quantite }}

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Category } from 'src/app/model/category';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +17,22 @@ export class HttpService {
       return this.http.get('http://localhost/angular/marmitonne/src/app/services/api/' + table + '.php?action=readOne&id='+id);
 
     }else{
-      return this.http.get('http://localhost/angular/marmitonne/src/app/services/api/' + table + '.php?action=readAll');
+      return this.http.get(`http://localhost/angular/marmitonne/src/app/services/api/${table}.php?action=readAll`);
     }
   }
 
   deleteData( table: string, id:any ): Observable<any> {
-    return this.http.post('http://localhost/angular/marmitonne/src/app/services/api/' + table + '.php?action=delete&id='+ id, {} );
+    return this.http.post(`http://localhost/angular/marmitonne/src/app/services/api/${table}.php?action=delete&id=${id}`, {} );
     // return this.getData(table);
   }
 
   postData(table:string, data:JSON ): Observable<any> {
     return this.http.post('http://localhost/angular/marmitonne/src/app/services/api/' + table + '.php?action=create', JSON.stringify(data) );
+    // return this.getData(table);
+
+  }
+  postObject(table:string, newObject :any  ): Observable<any> {
+    return this.http.post(`http://localhost/angular/marmitonne/src/app/services/api/${table}.php?action=insert`, JSON.stringify(newObject) );
     // return this.getData(table);
 
   }

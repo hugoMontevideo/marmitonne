@@ -1,10 +1,21 @@
-<div class="container d-flex flex-wrap justify-content-lg-between mt-5">
-    
+<h1 class="text-center">Categories de plats</h1>
+<div class="row">
+    <div class="col-8 mx-auto">
+        <button class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#newModal"
+                type="button"
+                >
+            Créer une categorie
+        </button>
+    </div>
+</div>
+<div class="container d-flex flex-wrap justify-content-lg-between mt-5">   
     <div class="card mb-3 p-2 border-0 shadow" 
         *ngFor="let elmt of categories">
     
-        <h1 class="text-center">{{ elmt.titre }}</h1>
-        <img [src]="elmt.photo" alt="">
+        <h1 class="text-center">{{ elmt.titre | titlecase }}</h1>
+        <!-- <img [src]="elmt.photo" alt=""> -->
     
         <div class="card-body">
             <a  class="card-link btn btn-info"
@@ -17,8 +28,55 @@
                 Supprimer
             </a>
           </div>
-
     </div>
 </div>
+
+<form>
+    <!-- #form="ngForm" -->
+<!-- (submit)="formulaire(form) -->
+    <div id="newModal" class="modal fade" 
+            tabindex="-1"
+            aria-labelledby="newProjectLabel"
+            aria-hidden="true"
+        >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="newProjectLabel">Nouvelle Categorie</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+            
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Id de la categorie</span>
+                        <input type="number" 
+                            [(ngModel)]="newCategory.id"
+                            name="projectId" 
+                            class="form-control" 
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+    
+    
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Nom de la categorie</span>
+                        <input type="text" 
+                            [(ngModel)]="newCategory.titre"
+                            name="projecName" 
+                            class="form-control" 
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+        
+                </div>
+        
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" (click)="onSaveClick()">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 
