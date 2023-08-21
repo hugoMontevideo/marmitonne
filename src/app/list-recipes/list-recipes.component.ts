@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/api/http.service';
 import { IngredientFormComponent } from '../ingredient-form/ingredient-form.component';
 import { ActivatedRoute } from '@angular/router';
+import { Recette } from '../model/recette';
 
 @Component({
   selector: 'app-list-recipes',
@@ -10,10 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class ListRecipesComponent implements OnInit {
-  // recipes: any;
-  recipes: Array<any> = [];
-  id_recette: any ='0';
+
+  table: string = "recette";
+  recipes: Array<Recette> = [];
   ingredients :any = [];
+  recette: Recette = new Recette();
 
   constructor(
       private http: HttpService,
@@ -22,10 +24,10 @@ export class ListRecipesComponent implements OnInit {
     ){ }; // injection d'un RecetteService
 
   ngOnInit():void {
-    this.id_recette = this.route.snapshot.paramMap.get('id');
-    console.log(this.id_recette);
-    if (this.id_recette != null ){
-      this.voirRecette(this.id_recette);
+    this.recette.id = this.route.snapshot.paramMap.get('id');
+    
+    if (this.recette.id != null ){
+      this.voirRecette(this.recette.id);
     } else{
       this.getData();
     }   
@@ -33,31 +35,32 @@ export class ListRecipesComponent implements OnInit {
   }
 
   getData(){
-    this.http.getData("recette")
+    this.http.getData(this.table)
     .subscribe({
-      // next: (data)=>console.log(data),
-      next: (data)=>this.recipes = data,
+      next: (data: Recette[])=>this.recipes = data,
       error: (err:Error)=> console.log(err),
-      complete:()=>console.log("success")
+      complete:()=>console.log(this.recipes)
     });
   }
 
   delete(id:any){
-    this.http.deleteData("recette", id)
+    this.http.deleteData(this.table, id)
     .subscribe({
       error: (err: Error )=>console.error('Observer got an error: '+ err ),
       complete: ()=> this.getData()
     });
   }
-  addFavoris(id:any){
 
-  }
   voirRecette(id:any){
-    this.http.getIngredientByIdRecipe("ingredient", this.id_recette)
+    this.http.getIngredientByIdRecipe("ingredient", this.recette.id)
     .subscribe({
       next: (data:string)=> this.ingredients = (data),
       error: (err: Error )=>console.error('Observer got an error: '+ err ),
       complete: ()=>console.log('Observer got a complete notification')
     });
+  }
+
+  addFavoris(id:any){
+
   }
 }

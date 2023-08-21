@@ -7,3 +7,15 @@
         object-fit: cover;
     }
 }
+span.delete{
+    background: rgb(239, 197, 12);
+        width: 1rem;
+        height: 1rem;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1px;
+        cursor: pointer;
+}

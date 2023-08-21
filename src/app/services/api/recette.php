@@ -37,10 +37,14 @@ if($_GET['action'] == 'readOneRecipe')
     echo json_encode($data);
 }
 
-if($_GET['action'] == 'readAll')
-{
-    $sql = "SELECT r.*, c.titre as categorie FROM categorie c 
-            INNER JOIN recette r ON r.id_categorie=c.id";
+if($_GET['action'] == 'readAll'){
+
+    // $sql = "SELECT r.*, c.titre as categorie 
+    //         FROM categorie c 
+    //         INNER JOIN recette r 
+    //         ON r.id_categorie=c.id";
+    $sql = "SELECT * FROM recette";
+
 
     $result = $pdo->prepare($sql);
     $result->execute();

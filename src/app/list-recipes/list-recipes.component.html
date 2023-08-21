@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-lg-between" *ngIf="id_recette == null " >
+<div class="container d-flex justify-content-lg-between" *ngIf="recette.id == null " >
     
     <div class="card" *ngFor="let elmt of recipes">
     
@@ -7,17 +7,10 @@
     
         <div class="card-body">
             <a  class="card-link btn btn-info"
-                [routerLink]="['/oneRecipe',elmt.id]">
-                <!-- (click)="voirRecette(elmt.id)"> -->
+                [routerLink]="['/oneRecipe',elmt.id]"
+                (click)="voirRecette(elmt.id)">
                 Voir la recette
             </a>
-            <!-- <div *ngIf="id_recette != '0'" > 
-
-                <ul *ngFor="let elmt of ingredients">
-                    <li>ingredients</li>
-                </ul>
-        
-            </div>  -->
                 
             <a  class="card-link btn btn-info"
                 [routerLink]="['/formIngredient',elmt.id]">
@@ -27,10 +20,10 @@
                 [routerLink]="['/formEtape',elmt.id]">
                 Etapes
             </a>
-            <a  class="card-link btn btn-info"
+            <!-- <a  class="card-link btn btn-info"
                (click)="addFavoris(elmt.id)">
                 Ajouter aux favoris
-            </a>
+            </a> -->
             <a  class="card-link btn btn-warning"
                 [routerLink]="['/formRecipe', elmt.id]">Modifier</a>
             <a  
@@ -44,4 +37,7 @@
     </div>
    
 
-</div>
+</div> 
+
+
+

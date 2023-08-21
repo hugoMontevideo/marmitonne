@@ -3,74 +3,78 @@
     <div class="col-10 col-lg-6"> 
 
       <form #form="ngForm" (submit)="formulaire(form)" class="shadow p-3 w-100">
-          <legend>Nouvelle recette</legend>
-          <input type="hidden" name="id" [(ngModel)]="recette.id">
+        <legend>Nouvelle recette</legend>
+        <input type="hidden" name="id" [(ngModel)]="recette.id">
+        <div class="form-group">
+          <label for="titre">Titre</label>
+          <input [(ngModel)]="recette.titre" type="text" class="form-control" name="titre" id="titre" aria-describedby="titre" placeholder="Titre de la recette">
+        </div>
+        
+        <div class="form-group">
+          <label for="description">description</label>
+          <input [(ngModel)]="recette.description" name="description" type="text" class="form-control" id="description" aria-describedby="description" placeholder="Description de la recette">
+        </div>
+        <div class="form-group">
+          <label for="difficulte">Difficulté </label>
+          <select  [(ngModel)]="recette.difficulte" class="form-control" name="difficulte" id="difficulte">
+            <option value="facile">facile</option>
+            <option value="moyen">moyen</option>
+            <option value="difficile">difficile</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tempsprep">Temps de préparation (en min )</label>
+          <input type="number" [(ngModel)]= "recette.tempsPrep" class="form-control" name="tempsprep" id="tempsprep" aria-describedby="tempsprep" placeholder="tempsprep">
+        </div>
+        <div class="form-group">
+          <label for="tempsCuisson">Temps de cuisson</label>
+          <input [(ngModel)]= "recette.tempsCuisson" type="text" class="form-control" name="tempscuisson" id="tempsCuisson" aria-describedby="tempsCuisson" placeholder="tempsCuisson">
+        </div>
+        <div class="form-group">
+          <label for="cout">Cout</label>
+          <select  [(ngModel)]= "recette.cout" class="form-control" name="cout" id="cout">
+            <option value="1">€</option>
+            <option value="2">€€</option>
+            <option value="3">€€€</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="photo">Url de l'image</label>
+          <input [(ngModel)]= "recette.photo" type="text" class="form-control" name="photo" id="photo" aria-describedby="photo" placeholder="photo">
+        </div>
+        <div class="preview" mt-3>
+          <img *ngIf="recette.photo != null" src="{{recette.photo}}" alt="">
+        </div>
+        <div>
           <div class="form-group">
-            <label for="titre">Titre</label>
-            <input [(ngModel)]="recette.titre" type="text" class="form-control" name="titre" id="titre" aria-describedby="titre" placeholder="Titre de la recette">
-          </div>
-          
-          <div class="form-group">
-            <label for="description">description</label>
-            <input [(ngModel)]="recette.description" name="description" type="text" class="form-control" id="description" aria-describedby="description" placeholder="Description de la recette">
-          </div>
-          <div class="form-group">
-            <label for="difficulte">Difficulté </label>
-            <select  [(ngModel)]="recette.difficulte" class="form-control" name="difficulte" id="difficulte">
-              <option value="facile">facile</option>
-              <option value="moyen">moyen</option>
-              <option value="difficile">difficile</option>
+            <label for="category">Catégorie de recette</label>
+            <select [(ngModel)]="recette.id_categorie"          
+              class="form-control" id="category"
+              name="id_categorie" 
+              >
+              <option *ngFor="let category of categories" value="{{ category.id }}"
+                    >{{ category.titre }}</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="tempsprep">Temps de préparation (en min )</label>
-            <input type="number" [(ngModel)]= "recette.tempsprep" class="form-control" name="tempsprep" id="tempsprep" aria-describedby="tempsprep" placeholder="tempsprep">
-          </div>
-          <div class="form-group">
-            <label for="tempsCuisson">Temps de cuisson</label>
-            <input [(ngModel)]= "recette.tempscuisson" type="text" class="form-control" name="tempscuisson" id="tempsCuisson" aria-describedby="tempsCuisson" placeholder="tempsCuisson">
-          </div>
-          <div class="form-group">
-            <label for="cout">Cout</label>
-            <select  [(ngModel)]= "recette.cout" class="form-control" name="cout" id="cout">
-              <option value="1">€</option>
-              <option value="2">€€</option>
-              <option value="3">€€€</option>
-            </select>
-          </div>
+        </div>
+        
+        <!-- $event contien l'objet qu'on a emit dans emit () -->
+        <app-ingredient (ingrEvent)="addIngr($event)"></app-ingredient>
 
-          <div class="form-group">
-            <label for="photo">Url de l'image</label>
-            <input [(ngModel)]= "recette.photo" type="text" class="form-control" name="photo" id="photo" aria-describedby="photo" placeholder="photo">
-          </div>
-          <div class="preview" mt-3>
-            <img *ngIf="recette.photo != null" src="{{recette.photo}}" alt="">
-          </div>
-          <div>
-            <div class="form-group">
-              <label for="category">Catégorie de recette</label>
-              <select [(ngModel)]="recette.id_categorie"          
-                class="form-control" id="category"
-                name="id_categorie" 
-                >
-                <option *ngFor="let category of categories" value="{{ category.id }}"
-                      >{{ category.titre }}</option>
-              </select>
-            </div>
-          </div>
-          
-          <!-- $event contien l'objet qu'on a emit dans emit () -->
-          <app-ingredient (ingrEvent)="addIngr($event)"></app-ingredient>
-
-            <ul class="ms-5">
-              <li *ngFor="let ingredient of ingredients">
-                {{ ingredient.quantite }}
-                {{ ingredient.unite }}
-                {{ ingredient.nom }}
-              </li>
-            </ul>         
-          <button type="submit" class="btn btn-primary mt-3" >Submit</button>
-        </form>
+          <ul class="ms-5">
+            <li *ngFor="let ingredient of ingredients; let i=index" 
+              class="d-flex justify-content-around">
+              <span>
+              {{ ingredient.quantite }}
+              {{ ingredient.unite }}
+              {{ ingredient.nom }}
+              </span>
+              <span (click)="onDeleteItem(i)" class="delete" >&times;</span>
+            </li>
+          </ul>         
+        <button type="submit" class="btn btn-primary mt-3" >Submit</button>
+      </form>
       </div>
-    </div>
+  </div>
 </div>

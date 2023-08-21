@@ -9,8 +9,8 @@ export class ButtonDetailComponent {
 
   @Input() descriptif: string | undefined;
   @Input() ingredients: Array<string> | undefined;
-  @Input() cout: any | undefined;
-  @Input() difficulte: any | undefined;
+  @Input() cout: number | undefined;
+  @Input() difficulte: string | undefined;
   @Input() tempsCuisson: string | undefined;
   @Input() tempsPrep: string | undefined;
 

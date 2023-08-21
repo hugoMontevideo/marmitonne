@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Ingredient } from '../model/ingredient';
 
 @Component({
   selector: 'app-ingredient',
@@ -7,22 +8,17 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class IngredientComponent {
   
-  objet = {
-    nom:'',
-    quantite: '',
-    unite: ''
-  }
+  ingredient:Ingredient = new Ingredient();
 
   @Output() ingrEvent = new EventEmitter(); 
 
   addIngredient(unite:string, quantite:string, nom:string){
     
-    this.objet.nom = nom;
-    this.objet.unite = unite;
-    this.objet.quantite = quantite;
+    this.ingredient.nom = nom;
+    this.ingredient.unite = unite;
+    this.ingredient.quantite = quantite;
 
-    this.ingrEvent.emit(this.objet);
-    
+    this.ingrEvent.emit(this.ingredient);
   }
 
 
